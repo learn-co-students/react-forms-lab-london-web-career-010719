@@ -10,22 +10,22 @@ class LoginForm extends React.Component {
     };
   }
 
-  formHandler = e => {
+  handleForm = e => {
     e.preventDefault();
-    if (this.state.password > 0 && this.state.username > 0) {
-      this.props.onSubmit({this.state.username, this.state.password});
-    } else {
+    if (!this.state.password || !this.state.username) {
       alert("neither field can be empty!");
+    } else {
+      this.props.onSubmit(this.state);
     }
   };
 
-  // updateStateWithFromInput = (formName, formValue) => {
-  //   this.setState({formName: formValue})
-  // }
+  handleChange = (formName, formValue) => {
+    this.setState({ [formName]: formValue });
+  };
 
   render() {
     return (
-      <form onSubmit={this.formHandler}>
+      <form onSubmit={this.handleForm}>
         <div>
           <label>
             Username
