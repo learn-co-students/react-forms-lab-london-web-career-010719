@@ -4,21 +4,23 @@ class TwitterMessage extends React.Component {
   constructor() {
     super();
 
-    this.state = { characters: this.props.maxChars };
+    this.state = { tweetLength: 0 };
   }
 
-  remainingCharacters = number => {
-    return this.props.maxChars - number;
-  };
+  remainingCharacters = number => this.props.maxChars - number;
 
-  showWordLength = event => console.log(event.target.value.length);
+  WordLength = event =>
+    this.setState({ tweetLength: event.target.value.length });
 
   render() {
     return (
       <div>
         <strong>Your message:</strong>
-        <input onChange={this.showWordLength} type="text" />
-        <p>Remaining characters: {this.props.maxChars}</p>
+        <input onChange={this.WordLength} type="text" />
+        <p>
+          Remaining characters:
+          {this.remainingCharacters(this.state.tweetLength)}
+        </p>
       </div>
     );
   }
